@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- memanggil bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <!--memanggil geocoder-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script src="./bundle.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY" async defer></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+
+    <!--memanggil graphicscale-->
+    <link rel="stylesheet" type="text/css" href="./Leaflet.GraphicScale.min.css" />
+    <script src="./Leaflet.GraphicScale.min.js"></script>
+
+    <!--memanggil geolocation-->
+    <script src="leaflet-locatecontrol-gh-pages\src\L.Control.Locate.js"></script>
+    <link rel="stylesheet" type="text/css" href="leaflet-locatecontrol-gh-pages\src\style1.css" />
+    <link rel="stylesheet" type="text/css" href="leaflet-locatecontrol-gh-pages\src\style2.css" />
+
+    <!--memanggil coordinate control untuk mencari dan mengkopi koordinat-->
+    <script src="coordinates-control.js"></script>
+    <link rel="stylesheet" href="coordinates-control.js" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gokertanrisever/leaflet-ruler@master/src/leaflet-ruler.css" integrity="sha384-P9DABSdtEY/XDbEInD3q+PlL+BjqPCXGcF8EkhtKSfSTr/dS5PBKa9+/PMkW2xsY" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/gh/gokertanrisever/leaflet-ruler@master/src/leaflet-ruler.js" integrity="sha384-N2S8y7hRzXUPiepaSiUvBH1ZZ7Tc/ZfchhbPdvOE5v3aBBCIepq9l+dBJPFdo1ZJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <title>Sawah Surjan</title>
+
+  </head>
+  <body>
+    <!--NAVIGATION BAR-->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #c1deb4">
+      <div class="container">
+        <a class="navbar-brand" href="" ">Pemetaan Sawah Surjan</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#jumbotron">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#team">Team</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#projek">Project</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#produk">Product</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#footer">Contact</a>
+            </li>
+          </ul>
+          <script>
+            $(document).ready(function (){
+              $("ul.navbar-nav > li").click(function(e){
+                $("ul.navbar-nav > li").removeClass("active");
+                $(this).addClass("active");
+              });
+            })
+          </script>
+        </div>
+      </div>
+    </nav>
+    <!--END NAVIGATION BAR-->
+
+     <!--HOME-->    
+     <section class="jumbotron text-center" id="jumbotron" style="padding-left: 0rem; padding-right: 0rem;">
+      <h1 class="display-4" style="padding-bottom: 1rem; padding-top: 1rem; font-size: 38px; color: aliceblue;">Pemetaan Sawah Surjan di Kulon Progo Menggunakan Wahana UAV</h1>
+
+      <img src="image\foto1.jpg" alt="Pemetaan sawah surjan" width="150" class="rounded-circle img-thumbnail" />
+      <img src="image\foto5.jpg" alt="Pemetaan sawah surjan" width="150" class="rounded-circle img-thumbnail" />
+      <img src="image\foto3.jpg" alt="Pemetaan sawah surjan" width="150" class="rounded-circle img-thumbnail" />
+
+      <p class="lead" style="padding-top: 1rem; color: aliceblue;">Proyek Rekayasa Geodesi Geomatika</p>
+      <p style="display: inline">
+        Departemen Teknik Geodesi Fakultas Teknik <br />
+        Universitas Gadjah Mada <br />
+        2022
+      </p>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path
+            fill="#eef6ea"
+            fill-opacity="1"
+            d="M0,128L48,117.3C96,107,192,85,288,85.3C384,85,480,107,576,122.7C672,139,768,149,864,128C960,107,1056,53,1152,42.7C1248,32,1344,64,1392,80L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          ></path>
+        </svg>     
+    </section>
+    <!--HOME-->
+    <!--MEET THE TEAM-->
+     <section id="team">
+      <div class="container-fluid">
+        <div class="row justify-content-center">
+          <div class="col text-center">
+            <h2 style="padding-top: 0px">Meet the Team</h2>
+  
+            <div class="row justity-content-center fs-4">
+              <div class="col text-center">
+                <p>Dosen Pembimbing: Dr. Ruli Andaru</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-3">
+                <img src="foto_team\arga.jpg" class="card-img-top" alt="coba" />
+                <p class="lead">Arga Ibnu Kurniawan</p>
+                <p class="lead">19/440259/TK/48586</p>
+              </div>
+              <div class="col-3">
+                <img src="foto_team\farda.jpg" class="card-img-top" alt="coba" />
+                <p class="lead">Farda Fadila</p>
+                <p class="lead">19/440259/TK/48586</p>
+              </div>
+              <div class="col-3">
+                <img src="foto_team\fawwaz.jpg" class="card-img-top"  alt="coba" />
+                <p class="lead">Fawwaz Zufarysa Aryoko</p>
+                <p class="lead">19/440259/TK/48586</p>
+              </div>
+              <div class="col-3">
+                <img src="foto_team\ibnu.jpg" class="card-img-top" alt="coba" />
+                <p class="lead">Muhammad Ibnu Hananto</p>
+                <p class="lead">19/440259/TK/48586</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div id="ombak">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path
+              fill="#b8d0bf"
+              fill-opacity="1"
+              d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+            ></path>
+        </svg>
+
+        </div>
+      </div>
+    
+    </section>
+    <!--END TEAM-->
+    <!--Team-->
+    
+    
+    <!--End Team-->
+
+     <!--PROJEK-->
+     <section id="projek">
+      <div class="container" style="background-color: #b8d0bf">
+        <div class="row justify-content-center">
+          <div class="col text-center">
+          <h2>About the Project</h2> <br>
+        </div>
+        <div class="row justify-content center">
+          <div class="col text-center">
+            <p class="lead"> <strong> Deskripsi umum:</strong> Melakukan pemetaan untuk identifikasi sawah surjan <i> (ngisoran dan nduwuran)</i> dengan wahana UAV guna inventarisasi persebaran bidang beserta atribut tiap bidang sawah. </p>
+            </div>
+            <div class="row justify-content-center">              
+            </div>
+            
+              <div class="row text-center">
+                <p class="lead"><strong>Tujuan Kegiatan</strong></p>
+              </div>
+              <div class="row" >
+                <ul class="list-group text-center" style="padding-left: 1rem;">                
+                  <li class="list-group-item list-group-item-primary">Tersedianya data spasial lahan sawah surjan</li>
+                  <li class="list-group-item list-group-item-info">Tersedianya data atribut lahan sawah surjan</li>
+                  <li class="list-group-item list-group-item-success">Terintegrasinya data spasial dan data atribut lahan sawah surjan</li><br> 
+                  
+                </ul>
+
+              </div>
+            </div>
+           
+            <script>
+              const handleCakupan = () => {
+                const cakupan = document.getElementById('cakupan');
+                cakupan.classList.toggle('invisible');
+              }
+              
+              const handleLingkup = () => {
+                const lingkup = document.getElementById('lingkup');
+                lingkup.classList.toggle('invisible');
+              }
+            </script>
+            <div class="row">
+              <div class="col-md-6 justify-content-center" >
+                <button type="button" class="btn btn-success" style="opacity: 50%;" onclick="handleCakupan()">
+                  Cakupan Area
+                </button>
+              </div>
+              <div class="col-md-6 justify-content-center" style="align:center;" >
+                <button type="button" class="btn btn-secondary" style="opacity: 60%;" onclick="handleLingkup()">
+                  Lingkup Pekerjaan
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6" id="cakupan">
+                <p class="lead" >
+                Area pemetaan meliputi 24 desa dan kelurahan di Kulon Progo. Luas area kurang lebih 1000 hektare. </p>
+              </div>
+              <div class="col-md-6" id="lingkup" style="display: invisible;">
+                <p class="lead">Lingkup pekerjaan meliputi persiapan, pemotretan dengan UAV), pengolahan foto udara menjadi orthomosaic, digitasi dan identifikasi <i>‘Ndhuwuran’</i> dan <i>‘Ngisoran’</i>, penambahan <i>point of interest</i> , pembuatan Peta Kerja Peta Foto dan Peta Kerja Peta Garis, FGD pendataan atribut ke kelompok tani, penggabungan data attribute dan data spasial, pembuatan WebGIS, pemeriksaan output dan monitoring, serta pelaporan
+                </p>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#e4f3dc" fill-opacity="1" d="M0,0L48,32C96,64,192,128,288,149.3C384,171,480,149,576,160C672,171,768,213,864,240C960,267,1056,277,1152,261.3C1248,245,1344,203,1392,181.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+    </section>
+    <!--END PROJEK-->
+    <!--PRODUK-->
+    <section id="produk">
+      <div class="row">
+        <div class="col text-center">
+          <h2>Here's the Product!</h2> <br>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-4">
+            <p class="lead"><br><br><strong>Peta kerja </strong> seperti di samping dicetak dalam kertas ukuran A2. Skala yang digunakan beragam menyesuaikan luas area dan secara umum berkisar antara 1:3000 hingga 1:2000. Selain menjadi produk hasil pemetaan dengan UAV yang dilakukan, peta kerja tersebut juga digunakan sebagai bahan FGD untuk pengumpulan data atribut bersama kelompok tani.<p>
+              <a class="btn btn-info" href="#infopeta" role="button">Click here to explore more!</a>
+          </div>
+          <div class="col-7" style="padding-left:6rem;">
+            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>
+              </div>
+              <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="10000">
+                  <img src="peta kerja\Garongan A2 Peta Garis_001.png" class="d-block w-100" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Peta Garis Desa Garongan Bagian Barat</h5>
+                    <p>Menunjukkan hasil hasil identifikasi sawah surjan di Desa Garongan bagian barat.</p>
+                  </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                  <img src="peta kerja\Garongan A2 Peta Garis_002.png" class="d-block w-100" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Peta Garis Desa garongan Bagian Timur</h5>
+                    <p>Menunjukkan hasil hasil identifikasi sawah surjan di Desa Garongan bagian timur.</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="peta kerja\Garongan A2 Foto_001.png" class="d-block w-100" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Peta Foto Desa Garongan Bagian Barat</h5>
+                    <p>Menunjukkan hasil hasil identifikasi sawah surjan di Desa Garongan bagian barat dilengkapi orthomosaic</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="peta kerja\Garongan A2 Foto_002.png" class="d-block w-100" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Peta Foto Desa Garongan Bagian Timur</h5>
+                    <p>Menunjukkan hasil hasil identifikasi sawah surjan di Desa Garongan bagian timur dilengkapi orthomosaic</p>
+                  </div>
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+          
+        </div>
+    </section>
+    <!--END PROJEK-->
+    <!--PRODUK-->
+    <section id="coba"  style="background-color: #e4f3dc;  padding-bottom: 3rem;">
+      <div class="row">
+        <div class="col text-center" id="infopeta" style="padding-top: 4rem;">
+          <h2> Peta Sawah Surjan</h1> <br>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-7">
+          <div id="peta" style="background-color: #e4f3dc; padding-left: 2rem;">            
+            <div id="map" ></div>
+          </div>
+
+        </div>
+        <div class="col-5" id="sidebar" style="padding-left: 3rem;">
+          <div class="row" style="padding-left: 5rem; text-align: center;">
+           <h3>Informasi Sawah <br> <br></h3> 
+          </div>
+          <div class="row" style="padding-left: 3rem;">
+            <p class="lead" style="text-align:center;"> <strong>Ngisoran</strong></p>
+          </div>
+          <div class="row">
+            <div class="col-7" style="padding-left: 2rem;">
+              <table style="width:90%">
+                <tbody><tr>
+                      <td align="left">FID</td>
+                      <td id="f1"></td>
+                      </tr> <tr>
+                      <td align="left">Pemilik</td>
+                      <td id="f2"></td></tr>
+                      <tr>
+                      <td align="left">Kelompok Tani</td>
+                      <td id="f3"></td>
+                      </tr> <tr>
+               </tbody></table>
+            </div>
+          </div>
+          <div class="row" style="padding-left: 3rem;">
+            <p class="lead" style="text-align:center;"> <strong>Nduwuran</strong></p>
+          </div>
+          <div class="row">
+            <div class="col-9" style="padding-left: 2rem;">
+              <table style="width:90%">
+                <tbody><tr>
+                      <td align="left">FID</td>
+                      <td id="f5"></td>
+                      </tr> <tr>
+                      <td align="left">Pemilik</td>
+                      <td id="f6"></td></tr>
+                      <td align="left">Penggarap</td>
+                      <td id="f7"></td>
+                      </tr> <tr>
+                        <td align="left">Kelompok Tani</td>
+                      <td id="f8"></td>
+                      </tr> <tr>
+                      <td align="left">Jenis</td>
+                      <td id="f9"></td>
+                      </tr> <tr>
+                        <td align="left">Masa tanam</td>
+                        <td id="f10"></td>
+                        </tr> <tr>
+                      </tr> <tr>
+               </tbody></table>
+            </div>
+          </div>
+          
+          </div>
+      </div>
+    </section>
+   <!-- script peta -->
+   <script src="nduwuran.js"></script>
+   <script src="poi.js"></script>
+   <script src="ngisoran.js"></script>
+
+   <script>
+     var osm = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+       maxZoom: 19,
+       attribution: "© OpenStreetMap",
+     });
+     var OpenTopoMap = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+       maxZoom: 17,
+       attribution:
+         'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
+     });
+     var GoogleMap = L.tileLayer("http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}", {
+       maxZoom: 20,
+       subdomains: ["mt0", "mt1", "mt2", "mt3"],
+     });
+
+     var map = L.map("map", {
+       center: [ -7.8693, 110.1315],
+       zoom: 17,
+       layers: [GoogleMap],
+     });
+
+     var baseMaps = {
+       "Open Street Map": osm,
+       "Open Topo Map": OpenTopoMap,
+       "Google Maps": GoogleMap,
+     };
+
+     function cari() {
+       alert("tombol ditekan!");
+       map.locate({ setView: true, maxZoom: 16 });
+
+       function onLocationFound(e) {
+         var radius = e.accuracy / 2;
+
+         L.marker(e.latlng)
+           .addTo(map)
+           .bindPopup("You are within " + radius + " meters from this point")
+           .openPopup();
+
+         L.circle(e.latlng, radius).addTo(map);
+       }
+
+       map.on("locationfound", onLocationFound);
+     }
+
+     var c = new L.Control.Coordinates();
+     c.addTo(map);
+
+     map.on("click", function (e) {
+       c.setCoordinates(e);
+     });
+
+     var styleNgisoran = {
+       color: "#16D39D",
+       weight: 5,
+       opacity: 0.65,
+     };
+
+     var poi = L.geoJSON(poi, {
+       onEachFeature: function (feature, layer) {
+         layer.bindPopup("<p>" + feature.properties.nama_objek + "</p>");
+       },
+     }).addTo(map);
+
+     var ngisoran = L.geoJSON(ngisoran, {
+       style: styleNgisoran,
+       onEachFeature:function (feature, layer) {
+      
+          layer.on('click', function (e) {
+            //place attributes in panel table.
+              
+              var field1=document.getElementById('f1');
+              field1.innerHTML=e.target.feature.properties.fid;
+              var field2=document.getElementById('f2');
+              field2.innerHTML=e.target.feature.properties.pemilik;
+              var field3=document.getElementById('f3');
+              field3.innerHTML=e.target.feature.properties.kelompok_tani;
+          });
+
+      }
+      }).addTo(map);
+
+     var nduwuran = L.geoJSON(nduwuran, {
+      onEachFeature:function (feature, layer) {
+      
+      layer.on('click', function (e) {
+        //place attributes in panel table.
+          
+          var field1=document.getElementById('f5');
+          field1.innerHTML=e.target.feature.properties.fid;
+          var field2=document.getElementById('f6');
+          field2.innerHTML=e.target.feature.properties.Pemilik;
+          var field3=document.getElementById('f7');
+          field3.innerHTML=e.target.feature.properties.Penggarap;
+          var field3=document.getElementById('f8');
+          field3.innerHTML=e.target.feature.properties.Kel_Tani;
+          var field3=document.getElementById('f9');
+          field3.innerHTML=e.target.feature.properties.Jenis;
+          var field3=document.getElementById('f10');
+          field3.innerHTML=e.target.feature.properties.MT;
+      });
+
+  }
+  }).addTo(map);
+
+     var overlayMaps = {
+       Nduwuran: nduwuran,
+       Ngisoran: ngisoran,
+       POI: poi,
+     };
+
+     L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+     L.Control.geocoder().addTo(map);
+
+     L.easyPrint({
+       title: "My awesome print button",
+       position: "topleft",
+       sizeModes: ["A4Portrait", "A4Landscape"],
+     }).addTo(map);
+
+     L.control.ruler().addTo(map);
+
+     L.control.locate().addTo(map);
+
+     var graphicScale = L.control
+       .graphicScale({
+         fill: "fill",
+         doubleLine: "true",
+         showSubunits: "true",
+       })
+       .addTo(map);
+
+     
+   </script>
+    <!--END PRODUK-->
+   <!--COBA PRODUK 2-->
+   
+   <!--END PRODUK 2-->
+    <!--FOOTER-->
+    <section >
+      <div class="container" id="footer">
+        <footer class="row">
+          <div class="sozial col-xs-12 col-sm-6 col-sm-push-6">
+            <ul class="row">
+              <li class="col-xs-6 col-sm-2">
+                <a href="#">
+                  <img class="logo" src="https://cdn2.iconfinder.com/data/icons/black-white-social-media/32/online_social_media_facebook-128.png">
+                </a>
+              </li>
+              <li class="col-xs-6 col-sm-2">
+                <a href="#">
+                  <img class="logo" src="https://cdn2.iconfinder.com/data/icons/black-white-social-media/32/twitter_online_social_media-128.png">
+                </a>
+              </li>
+              <li class="col-xs-6 col-sm-2">
+                <a href="#">
+                  <img class="logo" src="https://cdn2.iconfinder.com/data/icons/black-white-social-media/32/instagram_online_social_media_photo-128.png">
+                </a>
+              </li>
+              <li class="col-xs-6 col-sm-2">
+                <a href="#">
+                  <img class="logo" src="https://cdn2.iconfinder.com/data/icons/black-white-social-media/32/online_social_media_google_plus-128.png">
+                </a>
+              </li>
+            </ul>
+          </div><!-- Ende Sozial media -->
+          
+          <div class="copyright col-xs-12 col-sm-3 col-sm-pull-6">
+            <p> &copy; Kelompok 21 </p>
+          </div><!-- Ende Copyright -->
+          
+          <div class="impressum col-xs-12 col-sm-3 col-sm-pull-6">
+            <p> PRGG 2022</p>
+            <p> Departemen Teknik Geodesi </p>
+          </div><!-- Ende Impressum -->
+        </footer>
+      </div>
+    </section>
+    <!--END FOOTER-->
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
+</html>

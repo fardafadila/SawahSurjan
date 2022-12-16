@@ -1,0 +1,117 @@
+.jumbotron {
+  padding-top: 6rem;
+  background-color: #64a678;
+  padding-bottom: 0rem;
+}
+
+#team {
+  background-color: #eef6ea;
+  padding-top: 2rem;
+}
+.img-thumbnail {
+  background-color: #4d703e;
+}
+section {
+  padding-top: 5rem;
+}
+#projek {
+  background-color: #b8d0bf;
+}
+#myDIV {
+  text-align: center;
+  background-color: #b8d0bf;
+  margin-top: 20px;
+}
+#ombak {
+  padding: 0px;
+  width: 100%;
+}
+#produk {
+  background-color: #e4f3dc;
+}
+
+#carouselExampleCaptions {
+  carousel-control-color: #d81717;
+}
+#map {
+  float: center;
+  height: 460px;
+  width: 720px;
+  padding-bottom: 10rem;
+  padding-left: 5rem;
+}
+.jumbotron {
+  padding-top: 6rem;
+  background-color: #64a678;
+  width: 100%;
+}
+#team {
+  background-color: #eef6ea;
+  padding-top: 4rem;
+}
+.img-thumbnail {
+  background-color: #4d703e;
+}
+section {
+  padding-top: 5rem;
+}
+#projek {
+  background-color: #b8d0bf;
+}
+#myDIV {
+  text-align: center;
+  background-color: #b8d0bf;
+  margin-top: 20px;
+}
+#ombak {
+  padding: 0px;
+  width: 100%;
+}
+#produk {
+  background-color: #e4f3dc;
+}
+body {
+  background-color: #eef6ea;
+}
+li {
+  list-style-type: none;
+  margin-left: 1vw;
+}
+
+li:first-child {
+  margin: 0;
+}
+
+footer {
+  padding-top: 5vh;
+  padding-bottom: 2vh;
+}
+
+.content {
+  height: 50vh;
+  background-color: lightgray;
+}
+
+.container {
+  background-color: rgb(220, 245, 230);
+}
+
+.copyright,
+.impressum {
+  text-align: center;
+}
+
+.logo {
+  height: 8vh;
+}
+
+@media (max-width: 768px) {
+  li {
+    margin-left: 0;
+    margin-bottom: 1vh;
+  }
+
+  .sozial {
+    margin-bottom: 1vh;
+  }
+}
