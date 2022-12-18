@@ -310,7 +310,7 @@
         </div>
         <div class="col-5" id="sidebar" style="padding-left: 3rem;">
           <div class="row" style="padding-left: 5rem; text-align: center;">
-           <h3>Informasi Sawah <br> <br></h3> 
+           <h3>Informasi Sawah <br></h3> 
           </div>
           <div class="row" style="padding-left: 3rem;">
             <p class="lead" style="text-align:center;"> <strong>Ngisoran</strong></p>
@@ -325,8 +325,11 @@
                       <td align="left">Pemilik</td>
                       <td id="f2"></td></tr>
                       <tr>
-                      <td align="left">Kelompok Tani</td>
+                        <td align="left">Luas</td>
                       <td id="f3"></td>
+                      </tr> <tr>
+                        <td align="left">Keliling</td>
+                      <td id="f4"></td>
                       </tr> <tr>
                </tbody></table>
             </div>
@@ -355,7 +358,12 @@
                         <td align="left">Masa tanam</td>
                         <td id="f10"></td>
                         </tr> <tr>
-                      </tr> <tr>
+                          <td align="left">Luas</td>
+                          <td id="f11"></td>
+                          </tr> <tr>
+                            <td align="left">Keliling</td>
+                        <td id="f12"></td>
+                        </tr> <tr>
                </tbody></table>
             </div>
           </div>
@@ -440,11 +448,13 @@
             //place attributes in panel table.
               
               var field1=document.getElementById('f1');
-              field1.innerHTML=e.target.feature.properties.fid;
+              field1.innerHTML=e.target.feature.properties.fid_1;
               var field2=document.getElementById('f2');
               field2.innerHTML=e.target.feature.properties.pemilik;
               var field3=document.getElementById('f3');
-              field3.innerHTML=e.target.feature.properties.kelompok_tani;
+              field3.innerHTML=e.target.feature.properties.luas;
+              var field3=document.getElementById('f4');
+              field3.innerHTML=e.target.feature.properties.keliling;
           });
 
       }
@@ -457,7 +467,7 @@
         //place attributes in panel table.
           
           var field1=document.getElementById('f5');
-          field1.innerHTML=e.target.feature.properties.fid;
+          field1.innerHTML=e.target.feature.properties.fid_1;
           var field2=document.getElementById('f6');
           field2.innerHTML=e.target.feature.properties.Pemilik;
           var field3=document.getElementById('f7');
@@ -468,6 +478,10 @@
           field3.innerHTML=e.target.feature.properties.Jenis;
           var field3=document.getElementById('f10');
           field3.innerHTML=e.target.feature.properties.MT;
+          var field3=document.getElementById('f11');
+          field3.innerHTML=e.target.feature.properties.luas;
+          var field3=document.getElementById('f12');
+          field3.innerHTML=e.target.feature.properties.keliling;
       });
 
   }
