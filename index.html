@@ -436,7 +436,7 @@
 
      var poi = L.geoJSON(poi, {
        onEachFeature: function (feature, layer) {
-         layer.bindPopup("<p>" + feature.properties.nama_objek + "</p>");
+         layer.bindPopup("<p>" + feature.properties.nama + "</p>");
        },
      }).addTo(map);
 
